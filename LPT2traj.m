@@ -1,5 +1,5 @@
 function [traj] = LPT2traj(File)
-
+% comment 
 fid = fopen(File);
 counter = 0;
 idl=dlmread(File,' ',[0 0 0 0]);
