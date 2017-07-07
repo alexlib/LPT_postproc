@@ -15,7 +15,7 @@ function [varargout] = scatter_t2grid(scatter_t, x1, x2, x3, y1, y2, y3, z1, z2,
     
     [xg,yg,zg] = ndgrid(x1:x2:x3,y1:y2:y3,z1:z2:z3);    % creates a grid with the specified variables 
 
-    for i=1:length(scatter_t)                    % uses every data file in the specified directory and tracks how fast the program is running
+    parfor i=1:length(scatter_t)                    % uses every data file in the specified directory and tracks how fast the program is running
 
         x = scatter_t(i).x;                          % to avoid the interpolation around zero
         y = scatter_t(i).y;

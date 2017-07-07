@@ -2,8 +2,11 @@ function [ traj ] = smoothTraj( traj, dt )
 %smoothTraj Smoothe trajectories and take derivatives using cubic spline
 %   Detailed explanation goes here
 
-for i = 1:length(traj)
+parfor i = 1:length(traj)
     
+    if isempty(traj(i).t)
+        continue;
+    end
     [~, traj(i).u, traj(i).ax] = smoothspline(traj(i).t*dt, traj(i).x);
     [~, traj(i).v, traj(i).ay] = smoothspline(traj(i).t*dt, traj(i).y);
     [~, traj(i).w, traj(i).az] = smoothspline(traj(i).t*dt, traj(i).z);

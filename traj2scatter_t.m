@@ -10,7 +10,10 @@ function [varargout] = traj2scatter_t(traj)
 tmin = zeros(length(traj),1);
 tmax = zeros(length(traj),1);
 
-for i=1:length(traj)
+parfor i=1:length(traj)
+    if isempty(traj(i).t)
+        continue;
+    end
 	tmin(i) = min(traj(i).t);
 	tmax(i) = max(traj(i).t);
 end
@@ -23,7 +26,10 @@ if isfield(traj,'c')==0
 scatter_t = repmat(struct('x',[],'y',[],'z',[],'u',[],'v',[],'w',[],...		%Reconstruct the data matrix respect to the number of frames
     'ax',[],'ay',[],'az',[],'trajid',[]),idl,1);		
 
-for i=1:length(traj)							
+for i=1:length(traj)
+    if isempty(traj(i).t)
+        continue;
+    end
 	for j=1:length(traj(i).x)
 		k=traj(i).t(j);
 		x_new=traj(i).x(j);
